@@ -1,0 +1,26 @@
+# tell travis we need sudo priviledges
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker build -t usamamali/fibonacci-client-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true usamamali/fibonacci-client-test npm run test
+
+after_success:
+  - docker build -t usamamali/fibonacci-client ./client
+  - docker build -t usamamali/fibonacci-nginx ./nginx
+  - docker build -t usamamali/fibonacci-server ./server
+  - docker build -t usamamali/fibonacci-worker ./worker
+
+  # login to docker hub
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+  # push images to docker hub
+  - docker push usamamali/fibonacci-client
+  - docker push usamamali/fibonacci-nginx
+  - docker push usamamali/fibonacci-server
+  - docker push usamamali/fibonacci-worker
