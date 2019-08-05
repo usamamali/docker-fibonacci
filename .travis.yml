@@ -24,3 +24,17 @@ after_success:
   - docker push usamamali/fibonacci-nginx
   - docker push usamamali/fibonacci-server
   - docker push usamamali/fibonacci-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'eu-central-1'
+  app: 'fibonacci-multi-docker'
+  env: 'FibonacciMultiDocker-env'
+  bucket_name: 'elasticbeanstalk-eu-central-1-717466425526'
+  bucket_path: 'fibonacci-multi-docker'
+  on:
+    branch: master
+  access_key_id:
+    secure: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
