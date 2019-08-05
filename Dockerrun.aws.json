@@ -5,21 +5,21 @@
             "image": "usamamali/fibonacci-client",
             "hostname": "client",
             "essential": false,
-            "memory": 128
+            "memory": 256
         },
         {
             "name": "server",
             "image": "usamamali/fibonacci-api",
             "hostname": "api",
             "essential": false,
-            "memory": 128
+            "memory": 256
         },
         {
             "name": "worker",
             "image": "usamamali/fibonacci-worker",
             "hostname": "worker",
             "essential": false,
-            "memory": 128
+            "memory": 256
         },
         {
             "name": "nginx",
@@ -31,7 +31,7 @@
                 "containerPort": 80
             }],
             "links": ["client", "server"],
-            "memory": 128
+            "memory": 256
         }
     ]
 }
