@@ -28,10 +28,10 @@ after_success:
 deploy:
   provider: elasticbeanstalk
   region: 'eu-central-1'
-  app: 'fibonacci-multi-docker'
-  env: 'FibonacciMultiDocker-env'
+  app: 'fibonacci-multi-docker-ci'
+  env: 'FibonacciMultiDockerCi-env'
   bucket_name: 'elasticbeanstalk-eu-central-1-717466425526'
-  bucket_path: 'fibonacci-multi-docker'
+  bucket_path: 'fibonacci-multi-docker-ci'
   on:
     branch: master
   access_key_id:
