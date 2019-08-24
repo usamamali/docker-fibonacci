@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-cluster-ip-service
+spec:
+  type: ClusterIP
+  ports:
+    # port of the pod. It is used by other pods that want to call any container in that pod.
+    - port: 3000
+      # port of the container
+      targetPort: 3000
+  # send trafic to Pods with label matching the below
+  selector:
+    component: web
